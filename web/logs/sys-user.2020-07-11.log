@@ -1,0 +1,14 @@
+02:34:37.951 [RMI TCP Connection(5)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+02:34:37.959 [RMI TCP Connection(5)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+18:46:40.086 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+18:46:40.095 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+20:33:00.392 [RMI TCP Connection(4)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+20:33:00.398 [RMI TCP Connection(4)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+20:40:13.457 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+20:40:13.459 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+20:43:01.910 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+20:43:01.913 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+20:45:04.903 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+20:45:04.906 [RMI TCP Connection(2)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====
+22:12:36.481 [RMI TCP Connection(3)-127.0.0.1] INFO  sys-user - [shutdownSpringSessionValidationScheduler,39] - ====关闭会话验证任务====
+22:12:36.490 [RMI TCP Connection(3)-127.0.0.1] INFO  sys-user - [shutdownAsyncManager,56] - ====关闭后台任务任务线程池====

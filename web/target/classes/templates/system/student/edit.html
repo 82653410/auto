@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-student-edit">
+			<input id="treeId" name="clazzId" type="hidden" th:value="${clazz.clazzId}" />
+			<div class="form-group">
+				<label class="col-sm-3 control-label ">所属班级：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" onclick="selectClazzTree()" id="treeName" readonly="true" th:value="${clazz.clazzName}"/>
+				</div>
+			</div>
+			<input class="form-control" type="hidden" name="studentNo" id="studentNo" th:value="${stu.studentNo}">
+			<!-- 
+			<div class="form-group">
+				<label class="col-sm-3 control-label">学号：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentNo" id="studentNo" th:value="${stu.studentNo}">
+				</div>
+			</div>
+			 -->
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">姓名：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentName" id="studentName"  th:value="${stu.studentName}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">联系电话：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentPhone" id="studentPhone"  th:value="${stu.studentPhone}">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript">
+	var prefix = ctx + "system/student";
+	var prefix2 = ctx + "system/clazz";
+		
+		$("#form-student-edit").validate({
+			rules:{
+				
+				studentPhone:{
+        			isPhone:true,
+        		},
+			},
+			messages: {
+		        
+		    }
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	        	$.operate.save(prefix + "/edit", $('#form-student-edit').serialize());
+	        }
+	    }
+	
+		/*年级/班级管理-修改-选择年级/班级树*/
+		function selectClazzTree() {
+			var clazzId = $("#treeId").val();
+			if(clazzId > 0) {
+			    var options = {
+					title: '年级/班级选择',
+					width: "380",
+					url: prefix2 + "/selectClazzTree/" + $("#treeId").val(),
+					callBack: doSubmit
+				};
+				$.modal.openOptions(options);
+			} else {
+        		$.modal.alertError("父年级/班级不能选择");
+        	}
+		}
+		
+		function doSubmit(index, layero){
+			var tree = layero.find("iframe")[0].contentWindow.$._tree;
+			if ($.tree.notAllowParents(tree)) {
+	   			var body = layer.getChildFrame('body', index);
+	   			$("#treeId").val(body.find('#treeId').val());
+	   			$("#treeName").val(body.find('#treeName').val());
+	   			layer.close(index);
+			}
+		}
+	</script>
+</body>
+</html>

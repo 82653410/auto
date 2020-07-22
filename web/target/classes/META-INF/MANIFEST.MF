@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: web
+Implementation-Version: 3.2.1
+Built-By: tang
+Implementation-Vendor-Id: com.accp
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/web
+Created-By: Maven Integration for Eclipse
+

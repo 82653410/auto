@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-student-add">
+			<input id="treeId" name="clazzId" type="hidden" th:value="${clazz.clazzId}" />
+			<div class="form-group">
+				<label class="col-sm-3 control-label ">所属班级：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" onclick="selectClazzTree()" id="treeName" readonly="true" th:value="${clazz.clazzName}"/>
+				</div>
+			</div>
+			<input class="form-control" type="hidden" name="studentNo" id="studentNo">
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">姓名：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentName" id="studentName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">联系电话：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentPhone" id="studentPhone">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript">
+	var prefix = ctx + "system/student";
+	var prefix2 = ctx + "system/clazz";
+		
+		$("#form-student-add").validate({
+			rules:{
+				studentPhone:{
+        			isPhone:true,
+        		},
+			},
+			messages: {
+		        "studentNo": {
+		            remote: "学号已经存在"
+		        }
+		    }
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	        	$.operate.save(prefix + "/add", $('#form-student-add').serialize());
+	        }
+	    }
+	
+		/*年级/班级管理-新增-选择父年级/班级树*/
+		function selectClazzTree() {
+			var options = {
+				title: '年级/班级选择',
+				width: "380",
+				url: prefix2 + "/selectClazzTree/" + $("#treeId").val(),
+				callBack: doSubmit
+			};
+			$.modal.openOptions(options);
+		}
+		
+		function doSubmit(index, layero){
+
+			var tree = layero.find("iframe")[0].contentWindow.$._tree;
+   			if ($.tree.notAllowParents(tree)) {
+				var body = layer.getChildFrame('body', index);
+    			$("#treeId").val(body.find('#treeId').val());
+    			$("#treeName").val(body.find('#treeName').val());
+    			layer.close(index);
+			}
+		}
+	</script>
+</body>
+</html>
