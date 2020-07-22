@@ -27,7 +27,7 @@
         select step_id, case_id, project_id, step_serial_number, step_path, step_operation, step_parameters, action, expected_result, step_type, extend, step_remark, create_by, create_time, update_by, update_time from project_case_steps
     </sql>
     
-    <select id="selectStepIdByCaseIdAndSerialNumber" resultType="Integer">
+    <select id="selectStepIdByCaseIdAndSerialNumber" resultType="String">
     	SELECT step_id FROM `project_case_steps` WHERE case_id = #{caseId} AND step_serial_number = #{stepSerialNumber}
     </select>
 

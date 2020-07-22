@@ -80,5 +80,5 @@ public interface ProjectCaseStepsMapper
      */
     int selectProjectCaseStepsCountByTemplateId(Integer extend);
     
-    int selectStepIdByCaseIdAndSerialNumber(@Param("caseId") Integer caseId,@Param("stepSerialNumber") Integer stepSerialNumber);
+    String selectStepIdByCaseIdAndSerialNumber(@Param("caseId") Integer caseId,@Param("stepSerialNumber") Integer stepSerialNumber);
 }

@@ -277,7 +277,7 @@ public class ProjectCaseServiceImpl implements IProjectCaseService
 
 		for (ProjectCase projectCase : caseList) {
 			try {
-				int ret = projectCaseMapper.selectCaseByProjectIdAndModuleId(projectCase.getProjectId(),projectCase.getModuleId());
+				Integer ret = projectCaseMapper.selectCaseByProjectIdAndModuleId(projectCase.getProjectId(),projectCase.getModuleId());
 				//判断项目id和模块id是否存在
 				if(ret<=0) {
 					failcount++;
@@ -285,7 +285,11 @@ public class ProjectCaseServiceImpl implements IProjectCaseService
 					
 					
 				}else {
-					int ret2 = projectCaseMapper.selectCaseByProjectIdAndCaseName(projectCase.getProjectId(),projectCase.getCaseName());
+					String st = projectCaseMapper.selectCaseByProjectIdAndCaseName(projectCase.getProjectId(),projectCase.getCaseName());
+					Integer ret2=0;
+					if(st!=null) {
+						ret2 = Integer.parseInt(st);
+					}
 					if(ret2>0) {
 
 						projectCase.setUpdateBy(ShiroUtils.getLoginName());

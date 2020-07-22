@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT count(*) FROM project_case_module WHERE project_id = #{projectId} AND module_id = #{moduleId}
     </select>
     
-    <select id="selectCaseByProjectIdAndCaseName" resultType="Integer">
+    <select id="selectCaseByProjectIdAndCaseName" resultType="String">
     	SELECT case_id FROM `project_case` WHERE project_id = #{projectId}  AND case_name = #{caseName}
     </select>
     

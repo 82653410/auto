@@ -130,5 +130,5 @@ public interface ProjectCaseMapper
     
     int selectCaseByProjectIdAndModuleId(@Param("projectId") Integer projectId,@Param("moduleId") Integer moduleId);
     
-    int selectCaseByProjectIdAndCaseName(@Param("projectId") Integer projectId,@Param("caseName") String caseName);
+    String selectCaseByProjectIdAndCaseName(@Param("projectId") Integer projectId,@Param("caseName") String caseName);
 }

@@ -139,7 +139,11 @@ public class ProjectCaseStepsServiceImpl implements IProjectCaseStepsService
 
 		for (ProjectCaseSteps step : stepList) {
 			try {
-				int ret = projectCaseMapper.selectCaseByProjectIdAndCaseName(step.getProjectId(), step.getCaseName());
+				String re = projectCaseMapper.selectCaseByProjectIdAndCaseName(step.getProjectId(), step.getCaseName());
+				Integer ret=0;
+				if(re!=null) {
+					ret = Integer.parseInt(re);
+				}
 				//判断项目id和模块id是否存在
 				if(ret<=0) {
 					failcount++;
@@ -147,7 +151,11 @@ public class ProjectCaseStepsServiceImpl implements IProjectCaseStepsService
 					
 					
 				}else {
-					int ret2 = projectCaseStepsMapper.selectStepIdByCaseIdAndSerialNumber(ret, step.getStepSerialNumber());
+					String st = projectCaseStepsMapper.selectStepIdByCaseIdAndSerialNumber(ret, step.getStepSerialNumber());
+					Integer ret2=0;
+					if(st!=null) {
+						ret2 = Integer.parseInt(st);
+					}
 					if(ret2>0) {
 						
 						step.setUpdateBy(ShiroUtils.getLoginName());
@@ -159,9 +167,9 @@ public class ProjectCaseStepsServiceImpl implements IProjectCaseStepsService
 					    updatecount++;
 
 					}else {
-						ProjectCase projectCase=projectCaseService.selectProjectCaseById(step.getCaseId());
-						projectCaseService.updateProjectCase(projectCase);
-						
+//						ProjectCase projectCase=projectCaseService.selectProjectCaseById(step.getCaseId());
+//						projectCaseService.updateProjectCase(projectCase);
+						step.setCaseId(ret2);
 						step.setCreateBy(ShiroUtils.getLoginName());
 						step.setCreateTime(new Date());
 						step.setUpdateBy(ShiroUtils.getLoginName());

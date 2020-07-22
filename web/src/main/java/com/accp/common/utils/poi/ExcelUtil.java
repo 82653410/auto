@@ -305,7 +305,7 @@ public class ExcelUtil<T>
                         fieldsMap.put(++serialNum, field);
                     }
                 }
-                for (int i = 1; i < 3; i++)
+                for (int i = 1; i < 2; i++)
                 {
                     // 从第2行开始取数据,默认第一行是表头.
                     Row row = sheet.getRow(i);
@@ -317,7 +317,13 @@ public class ExcelUtil<T>
                         // 如果不存在实例则新建.
                         entity = (entity == null ? clazz.newInstance() : entity);
                         // 从map中得到对应列的field.
-                        Field field = fieldsMap.get(column + 1);
+                        Field field;
+                        if(column+1==serialNum) {
+
+                        	field = fieldsMap.get(column + 1);
+                        }else {
+                        	field = fieldsMap.get(column + 2);
+                        }
                         // 取得类型,并根据对象类型设置值.
                         Class<?> fieldType = field.getType();
                         if (String.class == fieldType)
@@ -448,7 +454,13 @@ public class ExcelUtil<T>
                         // 如果不存在实例则新建.
                         entity = (entity == null ? clazz.newInstance() : entity);
                         // 从map中得到对应列的field.
-                        Field field = fieldsMap.get(column + 1);
+                        Field field;
+                        if(column+1==serialNum) {
+
+                        	field = fieldsMap.get(column + 1);
+                        }else {
+                        	field = fieldsMap.get(column + 2);
+                        }
                         // 取得类型,并根据对象类型设置值.
                         Class<?> fieldType = field.getType();
                         if (String.class == fieldType)
