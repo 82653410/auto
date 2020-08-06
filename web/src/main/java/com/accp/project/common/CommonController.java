@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,6 +63,33 @@ public class CommonController
             {
                 FileUtils.deleteFile(filePath);
             }
+        }
+        catch (Exception e)
+        {
+            log.error("下载文件失败", e);
+        }
+    }
+    
+    /**
+     * 模板下载请求
+     * 
+     * @param fileName 文件名称
+     * @param delete 是否删除
+     */
+    @GetMapping("common/downloadByName")
+    public void fileDownloadBy(String fileName,  HttpServletResponse response, HttpServletRequest request)
+    {
+        String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
+        try
+        {
+            String filePath = ClassUtils.getDefaultClassLoader().getResource("static/file/").getPath() + fileName;
+
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("multipart/form-data");
+            response.setHeader("Content-Disposition",
+                    "attachment;fileName=" + setFileDownloadHeader(request, realFileName));
+            FileUtils.writeBytes(filePath, response.getOutputStream());
+            
         }
         catch (Exception e)
         {

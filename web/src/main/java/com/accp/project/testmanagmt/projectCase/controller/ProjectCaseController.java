@@ -129,7 +129,22 @@ public class ProjectCaseController extends BaseController
     }
 	
 	/**
-	 * 导出项目测试用例管理列表
+	 * 导出项目测试用例步骤列表
+	 */
+	@RequiresPermissions("testmanagmt:projectCase:export")
+    @PostMapping("/exportSteps")
+    @ResponseBody
+    public AjaxResult exportStep(ProjectCaseSteps projectCaseSteps)
+    {
+		
+    	List<ProjectCaseSteps> list = projectCaseStepsService.selectProjectCaseStepsList(projectCaseSteps);
+        ExcelUtil<ProjectCaseSteps> util = new ExcelUtil<>(ProjectCaseSteps.class);
+        return util.exportExcel(list, "测试用例步骤");
+    }
+	
+	
+	/**
+	 * 导入项目测试用例管理列表
 	 */
 
 	@Log(title = "测试用例", businessType = BusinessType.IMPORT)
@@ -270,6 +285,19 @@ public class ProjectCaseController extends BaseController
 		mmap.put("projectCase", projectCase);
 		mmap.put("projectCaseModule", projectCase.getProjectCaseModule());
 	    return "testmanagmt/projectCase/copy";
+	}
+	
+	/**
+	 * 下载导入模板
+	 * ummer
+	 *
+	 */
+	@RequiresPermissions("testmanagmt:projectCase:view")
+	@GetMapping("/importTemplate")
+	@ResponseBody
+	public AjaxResult importTemplate()
+	{
+		return AjaxResult.success("导入步骤模板.xlsx");
 	}
 
 	/**

@@ -12,7 +12,12 @@
 					<input class="form-control" type="text" onclick="selectClazzTree()" id="treeName" readonly="true" th:value="${clazz.clazzName}"/>
 				</div>
 			</div>
-			<input class="form-control" type="hidden" name="studentNo" id="studentNo">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">学号：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="studentNo" id="studentNo" >
+				</div>
+			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">姓名：</label>
